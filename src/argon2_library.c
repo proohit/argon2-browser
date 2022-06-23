@@ -17,7 +17,7 @@ int argon2_hash_ext(const uint32_t t_cost, const uint32_t m_cost,
                 const void* secret, const size_t secretlen,
                 const void* ad, const size_t adlen,
                 /* argon2-browser: end added parameters */
-                const uint32_t version){
+                const uint32_t version, const uint32_t stop_at_iteration){
 
     argon2_context context;
     int result;
@@ -64,6 +64,7 @@ int argon2_hash_ext(const uint32_t t_cost, const uint32_t m_cost,
     context.free_cbk = NULL;
     context.flags = ARGON2_DEFAULT_FLAGS;
     context.version = version;
+    context.stop_at_iteration = stop_at_iteration;
 
     result = argon2_ctx(&context, type);
 
